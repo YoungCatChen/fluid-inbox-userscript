@@ -105,16 +105,21 @@ ycInbox.updateUnread = function() {
     ycInbox.notifications = [];
   }
 
-  // Fetch new unread count.
+  // Fetch unread emails' information.
   var currentCount = ycInbox.getUnreadCount();
   var currentSenders = ycInbox.getAllSenders();
 
   if (currentCount < 0) {
-    // If not at the Inbox page: only update the badge as '?'.
-    window.fluid.dockBadge = '?';
+    // If not at the Inbox page:
+    // only update the badge as '?' when having no focus.
+    if (!document.hasFocus()) {
+      window.fluid.dockBadge = '?';
+    }
 
   } else {
-    // If new unread count is got: update the badge and send a notification.
+    // If at the Inbox page:
+    // 1. update the badge;
+    // 2. send a notification when having no focus.
     window.fluid.dockBadge = currentCount || '';
 
     if (ycInbox.unreadCount < currentCount && !document.hasFocus()) {
@@ -123,7 +128,8 @@ ycInbox.updateUnread = function() {
       var body = newSenders
           ? ('From ' + newSenders + '.')
           : "You've got new email(s).";
-      ycInbox.notifications.push(new Notification('New Email', {'body': body}));
+      ycInbox.notifications.push(
+          new Notification('Inbox: New Email', {'body': body}));
     }
 
     ycInbox.unreadCount = currentCount;
