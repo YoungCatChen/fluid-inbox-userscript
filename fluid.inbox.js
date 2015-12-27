@@ -54,7 +54,7 @@ ycInbox.getUnreadCount = function() {
 
 
 /**
- * [getAllSenders description]
+ * Finds all senders for unread emails.
  * @return {?Array<string>} An array for success, a null value for failure.
  */
 ycInbox.getAllSenders = function() {
@@ -67,6 +67,7 @@ ycInbox.getAllSenders = function() {
   });
   return senders;
 };
+
 
 /**
  * Returns the strings from an array that are not present in the other arrays.
