@@ -4,11 +4,21 @@ Google Inbox comes with a brand new experience for email tracking and reading,
 but I just don’t want to open a browser just for checking emails.
 Inspired by this post
 [Running Google Inbox as a Mac App](https://medium.com/aarons-blog/running-google-inbox-as-a-mac-app-6ae1be7613c4),
-I wrote this userscript to make dock badge to work.
+I wrote this userscript that enables dock badge and notifications.
+
+## Features
+
+- Dock badge:
+  - Shows when there are unread thread(s).
+  - Tells how many threads are unread.
+- Notification:
+  - Displays via OS X’s Notification center when there are new unread thread(s).
+  - Tells the sender.
+
+A screen shot is on the way.
 
 ## Future plan
 
-- Show notification via OS X’s Notification center.
 - Play a sound on new email.
 
 ## See also / similar approaches
