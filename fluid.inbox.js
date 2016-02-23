@@ -98,6 +98,8 @@ ycInbox.arrayDifference = function(left, right) {
  * Updates the badge and sends notification based on unread emails.
  */
 ycInbox.updateUnread = function() {
+  if (!window.jQuery) return;
+
   // Remove all existing notifications if the window has focus.
   if (document.hasFocus()) {
     for (var i = 0, noti; noti = ycInbox.notifications[i]; ++i) {
@@ -139,6 +141,13 @@ ycInbox.updateUnread = function() {
 };
 
 
+ycInbox.hideHangouts = function() {
+  if (!window.jQuery) return;
+  jQuery('[src^="https://hangouts.google.com"]')
+      .hide().attr('src', 'about:blank');
+};
+
+
 /** @const {number} */
 ycInbox.loadJQueryTimeout = ycInbox.loadJQueryTimeout ||
     window.setTimeout(ycInbox.loadJQuery, 1000);
@@ -146,5 +155,10 @@ ycInbox.loadJQueryTimeout = ycInbox.loadJQueryTimeout ||
 /** @const {number} */
 ycInbox.updateUnreadInterval = ycInbox.updateUnreadInterval ||
     window.setInterval(ycInbox.updateUnread, 2000);
+
+/** @const {number} */
+ycInbox.hideHangoutsInterval = ycInbox.hideHangoutsInterval ||
+    window.setInterval(ycInbox.hideHangouts, 2000);
+
 
 console.log('Loaded fluid.inbox.js.')
